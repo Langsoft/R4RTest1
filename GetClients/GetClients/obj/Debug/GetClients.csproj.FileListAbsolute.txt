@@ -18,3 +18,11 @@ D:\GetClients\GetClients\bin\Debug\GetClients.pdb
 D:\GetClients\GetClients\obj\Debug\GetClients.csprojResolveAssemblyReference.cache
 D:\GetClients\GetClients\bin\Debug\EntityFramework.dll
 D:\GetClients\GetClients\bin\Debug\EntityFramework.xml
+D:\GIT\d4d\GetClients\GetClients\bin\Debug\GetClients.exe.config
+D:\GIT\d4d\GetClients\GetClients\obj\Debug\GetClients.exe
+D:\GIT\d4d\GetClients\GetClients\obj\Debug\GetClients.pdb
+D:\GIT\d4d\GetClients\GetClients\bin\Debug\GetClients.exe
+D:\GIT\d4d\GetClients\GetClients\bin\Debug\GetClients.pdb
+D:\GIT\d4d\GetClients\GetClients\bin\Debug\EntityFramework.dll
+D:\GIT\d4d\GetClients\GetClients\bin\Debug\EntityFramework.xml
+D:\GIT\d4d\GetClients\GetClients\obj\Debug\GetClients.csprojResolveAssemblyReference.cache

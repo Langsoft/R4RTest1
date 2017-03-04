@@ -20,12 +20,13 @@ namespace GetClients
 
             List<Client> clientList = new List<Client>();
             string filePath = Console.ReadLine();
-            FileInfo theInputFile = new FileInfo(filePath);
+            FileInfo theInputFile = null;
             const char _Delimiter = ',';
             int entriesFound = 0;
 
             try
             {
+                theInputFile = new FileInfo(filePath);
                 using (var textReader = new StreamReader(theInputFile.FullName))
                 {
                     string line = textReader.ReadLine();
@@ -65,7 +66,7 @@ namespace GetClients
             {
                 if (ex.GetType() == typeof(FileNotFoundException))
                 {
-                    Console.WriteLine("Could not find the file " + theInputFile.FullName);
+                    Console.WriteLine("Could not find the file " + (theInputFile != null ?  theInputFile.FullName : "."));
                 }
                 else
                 {
@@ -73,57 +74,59 @@ namespace GetClients
                 }
             }
 
-            // Attempt to add the list of clients to the database
-            Console.WriteLine("Attempting to add " + entriesFound + (entriesFound > 1  ? " records " : " record ")); 
-            Console.WriteLine("to the database:\r\n ");
-            foreach (Client c in clientList)
+            if (entriesFound != 0)
             {
-                using (var db = new R4RTestEntities())
+                // Attempt to add the list of clients to the database
+                Console.WriteLine("Attempting to add " + entriesFound + (entriesFound > 1 ? " records " : " record "));
+                Console.WriteLine("to the database:\r\n ");
+                foreach (Client c in clientList)
                 {
-                    // Check if clent exists in db
-                    var result = db.R4RClients.Where(x => x.ClientID == c.ClientID).FirstOrDefault();
+                    using (var db = new R4RTestEntities())
+                    {
+                        // Check if clent exists in db
+                        var result = db.R4RClients.Where(x => x.ClientID == c.ClientID).FirstOrDefault();
 
-                    if (result != null)
-                    {
-                        Console.WriteLine("A client with the id of " + result.ClientID.ToString().Trim());
-                        Console.WriteLine("with the name of " + result.first_name.ToString().Trim() + " " + result.last_name.ToString().Trim());
-                        Console.WriteLine("already exists in the database.\r\n");
-                    }
-                    else
-                    {
-                        try
+                        if (result != null)
                         {
-                            // Add to db
-                            R4RClients client = new R4RClients
-                             {
-                                 ClientID = c.ClientID,
-                                 first_name = c.FirstName,
-                                 last_name = c.LastName,
-                                 email = c.Email,
-                                 country = c.Country
-                             };
-
-                            db.R4RClients.Add(client);
-                            db.SaveChanges();
-
-                            Console.WriteLine();
-                            Console.WriteLine(c.ToString() + ". Added.");
+                            Console.WriteLine("A client with the id of " + result.ClientID.ToString().Trim());
+                            Console.WriteLine("with the name of " + result.first_name.ToString().Trim() + " " + result.last_name.ToString().Trim());
+                            Console.WriteLine("already exists in the database.\r\n");
                         }
-                        catch (Exception ex)
+                        else
                         {
-                            if (ex.InnerException != null)
+                            try
                             {
-                                Console.WriteLine("A problem occured when writing items to the db, Message is" + ex.InnerException.Message);
+                                // Add to db
+                                R4RClients client = new R4RClients
+                                 {
+                                     ClientID = c.ClientID,
+                                     first_name = c.FirstName,
+                                     last_name = c.LastName,
+                                     email = c.Email,
+                                     country = c.Country
+                                 };
+
+                                db.R4RClients.Add(client);
+                                db.SaveChanges();
+
+                                Console.WriteLine();
+                                Console.WriteLine(c.ToString() + ". Added.");
                             }
-                            else
+                            catch (Exception ex)
                             {
-                                Console.WriteLine("A problem occured when writing items to the db, Message is" + ex.Message);
+                                if (ex.InnerException != null)
+                                {
+                                    Console.WriteLine("A problem occured when writing items to the db, Message is" + ex.InnerException.Message);
+                                }
+                                else
+                                {
+                                    Console.WriteLine("A problem occured when writing items to the db, Message is" + ex.Message);
+                                }
                             }
                         }
                     }
                 }
-             }
-
+            }
             Console.WriteLine("\r\nHit return to exit.");
             Console.ReadLine();
         }
