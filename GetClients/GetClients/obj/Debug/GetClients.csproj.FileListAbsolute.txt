@@ -1,0 +1,18 @@
+C:\Users\Mark\Documents\Visual Studio 2012\Projects\GetUsers\GetUsers\obj\Debug\GetUsers.exe
+C:\Users\Mark\Documents\Visual Studio 2012\Projects\GetUsers\GetUsers\bin\Debug\GetUsers.exe.config
+C:\Users\Mark\Documents\Visual Studio 2012\Projects\GetUsers\GetUsers\bin\Debug\GetUsers.exe
+C:\Users\Mark\Documents\Visual Studio 2012\Projects\GetUsers\GetUsers\bin\Debug\GetUsers.pdb
+C:\Users\Mark\Documents\Visual Studio 2012\Projects\GetUsers\GetUsers\obj\Debug\GetUsers.pdb
+C:\Users\Mark\Documents\Visual Studio 2012\Projects\GetUsers\GetUsers\obj\Debug\GetClients.csprojResolveAssemblyReference.cache
+C:\Users\Mark\Documents\Visual Studio 2012\Projects\GetClients\GetClients\bin\Debug\GetClients.exe.config
+C:\Users\Mark\Documents\Visual Studio 2012\Projects\GetClients\GetClients\bin\Debug\GetClients.exe
+C:\Users\Mark\Documents\Visual Studio 2012\Projects\GetClients\GetClients\bin\Debug\GetClients.pdb
+C:\Users\Mark\Documents\Visual Studio 2012\Projects\GetClients\GetClients\obj\Debug\GetClients.csprojResolveAssemblyReference.cache
+C:\Users\Mark\Documents\Visual Studio 2012\Projects\GetClients\GetClients\obj\Debug\GetClients.exe
+C:\Users\Mark\Documents\Visual Studio 2012\Projects\GetClients\GetClients\obj\Debug\GetClients.pdb
+D:\GetClients\GetClients\bin\Debug\GetClients.exe.config
+D:\GetClients\GetClients\obj\Debug\GetClients.exe
+D:\GetClients\GetClients\obj\Debug\GetClients.pdb
+D:\GetClients\GetClients\bin\Debug\GetClients.exe
+D:\GetClients\GetClients\bin\Debug\GetClients.pdb
+D:\GetClients\GetClients\obj\Debug\GetClients.csprojResolveAssemblyReference.cache

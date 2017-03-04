@@ -1,0 +1,6 @@
+c:\users\mark\documents\visual studio 2012\Projects\GetUsers\GetUsers\bin\Debug\GetUsers.exe.config
+C:\Users\Mark\documents\visual studio 2012\Projects\GetUsers\GetUsers\obj\Debug\GetUsers.csprojResolveAssemblyReference.cache
+C:\Users\Mark\documents\visual studio 2012\Projects\GetUsers\GetUsers\bin\Debug\GetUsers.exe
+C:\Users\Mark\documents\visual studio 2012\Projects\GetUsers\GetUsers\bin\Debug\GetUsers.pdb
+C:\Users\Mark\documents\visual studio 2012\Projects\GetUsers\GetUsers\obj\Debug\GetUsers.exe
+C:\Users\Mark\documents\visual studio 2012\Projects\GetUsers\GetUsers\obj\Debug\GetUsers.pdb
