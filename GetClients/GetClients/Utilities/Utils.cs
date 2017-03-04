@@ -5,17 +5,17 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
+
 namespace GetClients.Utilities
 {
- 
-
     /// <summary>
-    /// source: https://www.codeproject.com/articles/22777/email-address-validation-using-regular-expression
+    /// 
     /// </summary>
     public static class Utils
     {
         /// <summary>
         /// Regular expression, which is used to validate an E-Mail address.
+        /// source: https://www.codeproject.com/articles/22777/email-address-validation-using-regular-expression
         /// </summary>
         public const string MatchEmailPattern =
                     @"^(([\w-]+\.)+[\w-]+|([a-zA-Z]{1}|[\w-]{2,}))@"
@@ -39,6 +39,11 @@ namespace GetClients.Utilities
             else return false;
         }
 
+        /// <summary>
+        /// Converts the first letter of the given input string to uppercase
+        /// </summary>
+        /// <param name="input"></param>
+        /// <returns></returns>
         public static string FirstCharToUpper(string input)
         {
             if (String.IsNullOrEmpty(input))
@@ -46,6 +51,11 @@ namespace GetClients.Utilities
             return input.First().ToString().ToUpper() + input.Substring(1);
         }
 
+        /// <summary>
+        /// Converts the given input string to lowercase
+        /// </summary>
+        /// <param name="input"></param>
+        /// <returns></returns>
         public static string ToLowercase(string input)
         {
             if (String.IsNullOrEmpty(input))

@@ -10,7 +10,10 @@ namespace GetClients
 {
     class Program
     {
-        
+        /// <summary>
+        /// Main entry point
+        /// </summary>
+        /// <param name="args"></param>
         static void Main(string[] args)
         {
             Console.WriteLine("Please enter the file path for client input:");
@@ -30,13 +33,13 @@ namespace GetClients
                     Console.Write("Processing..");
                     while (line != null)
                     {
-
                         string[] columns = line.Split(_Delimiter);
                         //process each line
                         if (ProcessInputLine(ref columns))
                         {
                             entriesFound++;
 
+                            // Create new Client and add it to the list 
                             Client c = new Client
                             {
                                 ClientID = Convert.ToInt32(columns[0]),
@@ -57,7 +60,6 @@ namespace GetClients
                         Console.Write("..");
                     }
                 }
-
             }
             catch (Exception ex)
             {
@@ -71,18 +73,71 @@ namespace GetClients
                 }
             }
 
-            Console.WriteLine("The following " + entriesFound + (entriesFound > 1  ? " records " : " record ")); 
-            Console.WriteLine("will be added to the database:\r\n ");
+            // Attempt to add the list of clients to the database
+            Console.WriteLine("Attempting to add " + entriesFound + (entriesFound > 1  ? " records " : " record ")); 
+            Console.WriteLine("to the database:\r\n ");
             foreach (Client c in clientList)
             {
-                Console.WriteLine(c.ToString());
-            }
+                using (var db = new R4RTestEntities())
+                {
+                    // Check if clent exists in db
+                    var result = db.R4RClients.Where(x => x.ClientID == c.ClientID).FirstOrDefault();
+
+                    if (result != null)
+                    {
+                        Console.WriteLine("A client with the id of " + result.ClientID.ToString().Trim());
+                        Console.WriteLine("with the name of " + result.first_name.ToString().Trim() + " " + result.last_name.ToString().Trim());
+                        Console.WriteLine("already exists in the database.\r\n");
+                    }
+                    else
+                    {
+                        try
+                        {
+                            // Add to db
+                            R4RClients client = new R4RClients
+                             {
+                                 ClientID = c.ClientID,
+                                 first_name = c.FirstName,
+                                 last_name = c.LastName,
+                                 email = c.Email,
+                                 country = c.Country
+                             };
+
+                            db.R4RClients.Add(client);
+                            db.SaveChanges();
+
+                            Console.WriteLine();
+                            Console.WriteLine(c.ToString() + ". Added.");
+                        }
+                        catch (Exception ex)
+                        {
+                            if (ex.InnerException != null)
+                            {
+                                Console.WriteLine("A problem occured when writing items to the db, Message is" + ex.InnerException.Message);
+                            }
+                            else
+                            {
+                                Console.WriteLine("A problem occured when writing items to the db, Message is" + ex.Message);
+                            }
+                        }
+                    }
+                }
+             }
 
             Console.WriteLine("\r\nHit return to exit.");
             Console.ReadLine();
-            
         }
 
+        /// <summary>
+        /// Processes each given input line to apply the following rules:
+        /// 
+        /// •	Only import people from the United Kingdom	
+        /// •	All email addresses should be converted to lower case
+        /// •	Do not import people with an invalid email addresses, regardless of country
+        /// •	If the first or last name is in lower case, correct it so the first letter is upper case - eg lisa becomes Lisa, paul becomes Paul
+        /// </summary>
+        /// <param name="columns"></param>
+        /// <returns>true if valid input line i.e. complies with rules</returns>
         private static bool ProcessInputLine(ref string[] columns)
         {
             // this should be in configuration
@@ -97,24 +152,24 @@ namespace GetClients
 
                 if (!Utils.IsEmail(columns[3]))
                 {
-                    Console.WriteLine("ID:" + columns[0]
+                    Console.WriteLine("\r\nID:" + columns[0]
                                             + " "
                                             + columns[1]
                                             + " "
                                             + columns[2]);
-                    Console .WriteLine(" has an invalid email and will not be entered into the database.");
+                    Console .WriteLine("has an invalid email and will not be entered into the database.");
 
                     validInput = false;
                 }
 
                 if (!(Utils.ToLowercase(columns[4]) == _ValidCountry))
                 {
-                    Console.WriteLine("ID:" + columns[0]
+                    Console.WriteLine("\r\nID:" + columns[0]
                                             + " "
                                             + columns[1]
                                             + " "
                                             + columns[2]);
-                    Console.WriteLine (" is not in the UK and will not be added to the database.");
+                    Console.WriteLine ("is not in the UK and will not be added to the database.");
                     validInput = false;
                 }
 
@@ -122,10 +177,8 @@ namespace GetClients
             }
             catch (Exception ex)
             {
-                
                 throw ex;
             }
         }
-        
     }
 }

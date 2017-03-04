@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm" xmlns:cg="http://schemas.microsoft.com/ado/2006/04/codegeneration" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" Namespace="Model1" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" annotation:UseStrongSpatialTypes="false">
+  <EntityContainer Name="Model1Container" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="R4RClients" EntityType="Model1.R4RClients" />
+  </EntityContainer>
+  <EntityType Name="R4RClients">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="Int32" Name="ClientID" Nullable="false" />
+    <Property Type="String" Name="first_name" MaxLength="255" FixedLength="true" Unicode="true" />
+    <Property Type="String" Name="last_name" MaxLength="255" FixedLength="true" Unicode="true" />
+    <Property Type="String" Name="email" MaxLength="100" FixedLength="true" Unicode="true" />
+    <Property Type="String" Name="country" MaxLength="100" FixedLength="true" Unicode="true" />
+  </EntityType>
+</Schema>
